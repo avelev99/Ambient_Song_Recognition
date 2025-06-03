@@ -4,7 +4,6 @@ import argparse
 import torch
 
 from song_recognizer.train import train
-from song_recognizer.recognition import record_audio, predict
 from song_recognizer.model import SongRecognizer
 
 
@@ -18,6 +17,7 @@ def cmd_train(args: argparse.Namespace) -> None:
 
 
 def cmd_predict(args: argparse.Namespace) -> None:
+    from song_recognizer.recognition import record_audio, predict
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = SongRecognizer(num_classes=args.num_classes)
     model.load_state_dict(torch.load(MODEL_PATH, map_location=device))

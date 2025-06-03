@@ -32,5 +32,9 @@ class AudioDataset(Dataset):
         if waveform.ndim > 1:
             waveform = torch.mean(waveform, dim=0, keepdim=True)
         mel = self.transform(waveform)
+        # Resize to a fixed size for batching
+        mel = torch.nn.functional.interpolate(
+            mel.unsqueeze(0), size=(64, 64), mode="bilinear", align_corners=False
+        ).squeeze(0)
         label = idx  # Each file is its own label
         return mel, label
