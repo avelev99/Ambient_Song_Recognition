@@ -1,59 +1,63 @@
-# 🎵 Song Recognizer 🎵
+# Song Recognizer
 
-A Python program that uses PyTorch to train a neural network to recognize a song from microphone input. The program trains on 3 mp3 files from the local directory and utilizes pandas and numpy. After training, it attempts to recognize the song from the microphone.
+This project provides a minimal example of training a neural network to recognise short audio clips. It is built on top of **PyTorch** and **torchaudio** and exposes a small command line interface for training and prediction.
 
-## 🚀 Getting Started
+## Features
 
-### Prerequisites
+- Convert audio files to Mel-spectrograms on the fly
+- Simple convolutional neural network architecture
+- CLI commands for training and live microphone prediction
 
-- Python 3.7 or later
-- pip
+## Installation
 
-### Installation
+1. Create a virtual environment (optional but recommended)
+2. Install the dependencies
 
-1. Clone the repository:
-git clone https://github.com/your_username/song-recognizer.git
-
-2. Change to the project directory:
-cd song-recognizer
-
-3. Install the dependencies:
+```bash
 pip install -r requirements.txt
+```
 
-## 🎤 Usage
+## Usage
 
-1. Add your training songs (1.mp3, 2.mp3, and 3.mp3) to the `data` folder.
+### Training
 
-2. Run the program:
-python main.py
+Place your audio files (e.g. WAV or MP3) in a directory and run:
 
-3. After the model has been trained, it will prompt you to record a 5-second audio sample from your microphone.
+```bash
+python main.py train /path/to/audio
+```
 
-4. The program will predict the song from the recorded sample and display the result.
+The trained model will be saved to `song_recognizer.pth`.
 
-## 📁 Project Structure
+### Prediction
 
-📁 project
-├── 📁 data
-│ ├── 🎵 1.mp3
-│ ├── 🎵 2.mp3
-│ ├── 🎵 3.mp3
-├── 📄 main.py
-├── 📄 model.py
-├── 📄 utils.py
-├── 📄 requirements.txt
-├── 📄 .gitignore
-└── 📄 README.md
+To make a prediction using the microphone run:
 
-## 📚 Libraries and Frameworks
+```bash
+python main.py predict
+```
 
-- [PyTorch](https://pytorch.org/)
-- [torchaudio](https://pytorch.org/audio/stable/index.html)
-- [NumPy](https://numpy.org/)
-- [pandas](https://pandas.pydata.org/)
-- [sounddevice](https://python-sounddevice.readthedocs.io/)
-- [soundfile](https://pysoundfile.readthedocs.io/)
+or provide a prerecorded file:
 
-## 📝 License
+```bash
+python main.py predict --input_file sample.wav
+```
 
-Unlicensed, do what your heart desires with this :D
+## Project Structure
+
+```
+.
+├── song_recognizer
+│   ├── __init__.py
+│   ├── data.py
+│   ├── model.py
+│   ├── recognition.py
+│   └── train.py
+├── main.py
+├── requirements.txt
+└── README.md
+```
+
+## License
+
+MIT
