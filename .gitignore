@@ -3,3 +3,4 @@ __pycache__/
 *.pyo
 *.wav
 *.pth
+.env/
